@@ -7,6 +7,10 @@
   <% end %>
 </p>
 
+<% if @article.image.exists? %>
+  <%= image_tag @article.image_url %><br/>
+<% end %>
+
 <p><%= @article.body %></p>
 <%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Confirm delete"} %><br >
 <%= link_to "Edit", edit_article_path(@article) %><br >
