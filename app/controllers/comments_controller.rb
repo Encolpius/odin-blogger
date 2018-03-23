@@ -13,4 +13,10 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:author_name, :body)
   end
 
+  def destroy 
+    @article = Article.find(params[:id])
+    @comment = @article.comments.find(params[:id])
+    @comment.destroy!
+  end
+
 end
