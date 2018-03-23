@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :require_login, except: [:create]
 
   def create
     @comment = Comment.new(comment_params)
@@ -13,7 +14,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:author_name, :body)
   end
 
-  def destroy 
+  def destroy
     @article = Article.find(params[:id])
     @comment = @article.comments.find(params[:id])
     @comment.destroy!
